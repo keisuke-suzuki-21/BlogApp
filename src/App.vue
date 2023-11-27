@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import Article from "./article.vue"
+import Post from "./post.vue"
 
 // ブログ記事のシードデータ
 const articles = ref([
@@ -32,17 +33,73 @@ const articles = ref([
 ])
 
 // 検索に使うクエリー
-const searchQuery = ref("記事を検索")
+const searchQuery = ref("")
+
+// 記事投稿に使う空のオブジェクト
+let newTitle = ref("")
+let newContent = ref("")
+
+// 投稿ボタンを押された時にarticlesにデータを追加する処理
+function onPost(newTitle,newContent){
+  let newArticle = {
+    id: articles.length,
+    title: newTitle,
+    content: newContent,
+    nice: 0
+  }
+  return articles.push(newArticle)
+}
+
+// postコンポーネントから受け取ったデータをarticlesに追加する処理
+// function addArticle(title, content){
+//   console.log(title)
+//   let addArticle = {
+//     id: articles.length,
+//     title: title,
+//     content: content,
+//     nice: 0
+//   }
+//   articles.push(addArticle)
+// }
 
 </script>
 
 <template>
   <body class="body">
     <main class="main">
+      <h1 class="title">エンジニアBlog</h1>
       <div class="search">
-        <input v-model="searchQuery">
-        <button>search</button>
+        Search <input type="text" v-model="searchQuery">
       </div>
+
+      <div class="article">
+        <h3>投稿フォーム</h3>
+        <form>
+            <label>
+                title<br>
+                <input 
+                type="text"
+                v-model="newTitle"
+                >
+            </label><br>
+            <label>
+                content<br>
+                <textarea
+                type="textarea"
+                v-model="newContent"
+            ></textarea>
+            </label><br>
+            <button @click="onPost(newTitle,newContent)">投稿</button>
+        </form>
+    </div>
+
+      <!-- <Post
+      v-model:title = "title"
+      v-model:content = "content"
+      @on-post="addArticle"
+      /> -->
+
+
       <Article 
       :articles = "articles"
       :searchQuery = "searchQuery"
@@ -66,6 +123,10 @@ const searchQuery = ref("記事を検索")
   max-width: 800px;
   margin: 40px auto;
   padding: 0 20px;
+}
+
+.title{
+  margin: 20px auto;
 }
 
 .search{
