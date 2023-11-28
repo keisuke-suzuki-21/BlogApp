@@ -1,35 +1,19 @@
 <script setup>
 
-const props = defineProps({
-    title: String,
-    content: String
-})
+// const props = defineProps({
+//     title: String,
+//     content: String
+// })
 
-defineEmits(['update:title', 'update:content'])
+// defineEmits(['update:title', 'update:content'])
+
+
 </script>
 
 <template>
     <div class="article">
-        <h3>投稿フォーム</h3>
-        <form>
-            <label>
-                title<br>
-                <input 
-                type="text"
-                :value="title"
-                @input="updateValue('title', $event.target.value)"
-                >
-            </label><br>
-            <label>
-                content<br>
-                <textarea
-                type="textarea"
-                :value="content"
-                @input="updateValue('content', $event.target.value)"
-            ></textarea>
-            </label><br>
-            <button @click="$emit('onPost',title, content)">投稿</button>
-        </form>
+       <h2><slot name="title"/></h2>
+       <p><slot name="content"/></p>
     </div>
 </template>
 

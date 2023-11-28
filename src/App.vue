@@ -60,6 +60,10 @@ const articles = ref([
 // 検索に使うクエリー
 const searchQuery = ref("")
 
+// slotを使った投稿機能の準備
+const title = ref("")
+const content = ref("")
+
 </script>
 
 <template>
@@ -71,32 +75,28 @@ const searchQuery = ref("")
         Search <input type="text" v-model="searchQuery">
       </div>
 
-      <!-- <div class="article">
+      <div class="article">
         <h3>投稿フォーム</h3>
-        <form>
             <label>
                 title<br>
                 <input 
                 type="text"
-                v-model="newTitle"
+                v-model="title"
                 >
             </label><br>
             <label>
                 content<br>
                 <textarea
                 type="textarea"
-                v-model="newContent"
+                v-model="content"
             ></textarea>
             </label><br>
-            <button @click="onPost">投稿</button>
-          </form>
-      </div> -->
+      </div>
 
-      <!-- <Post
-      v-model:title = "title"
-      v-model:content = "content"
-      @on-post="addArticle"
-      /> -->
+      <Post>
+        <template v-slot:title>{{ title }}</template>
+        <template v-slot:content>{{ content }}</template>
+      </Post>
 
       <Article 
       :articles = "articles"
