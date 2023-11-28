@@ -6,9 +6,6 @@ const props = defineProps({
 })
 
 defineEmits(['update:title', 'update:content'])
-
-
-
 </script>
 
 <template>
@@ -33,9 +30,7 @@ defineEmits(['update:title', 'update:content'])
             </label><br>
             <button @click="$emit('onPost',title, content)">投稿</button>
         </form>
-
     </div>
-  
 </template>
 
 <style>

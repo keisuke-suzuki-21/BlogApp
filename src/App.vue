@@ -29,38 +29,36 @@ const articles = ref([
   title: "クラウドコンピューティング入門",
   content: "クラウドの基本概念から始まり、主要なクラウドプロバイダー（AWS、Azure、Google Cloudなど）のサービスや機能、セキュリティ、コスト最適化手法について具体的に解説します。また、クラウド移行の手順やベストプラクティスについても紹介します。",
   nice: 0
+  },
+  {id: 6,
+  title: "モバイルアプリのUI/UXデザイン",
+  content: "モバイルアプリの優れたUI/UXデザインの要素やベストプラクティスについて解説します。ユーザーインターフェースの設計原則や使いやすさのためのテクニックを例示します。",
+  nice: 0
+  },
+  {id: 7,
+  title: "プログラミング言語比較ガイド",
+  content: "主要なプログラミング言語（Python、JavaScript、Java、Rubyなど）を比較し、それぞれの特徴、用途、利点、欠点について詳しく解説します。",
+  nice: 0
+  },
+  {id: 8,
+  title: "データベース最適化の戦略",
+  content: "データベースのパフォーマンスを向上させるための最適化戦略やインデックスの最適な利用方法、クエリのチューニング手法について掘り下げます。",
+  nice: 0
+  },
+  {id: 9,
+  title: "AIのビジネス応用事例",
+  content: "人工知能（AI）をビジネスに活用する実際の事例や成功パターンを紹介します。機械学習や自然言語処理などの技術を活かしたビジネスへの応用に焦点を当てます。",
+  nice: 0
+  },
+  {id: 10,
+  title: "エンジニアリングリーダーシップの秘訣",
+  content: "エンジニアリーダーに求められるリーダーシップスキルやチームマネジメントのベストプラクティス、技術的なリーダーシップの重要性について論じます。",
+  nice: 0
   }
 ])
 
 // 検索に使うクエリー
 const searchQuery = ref("")
-
-// 記事投稿に使う空のオブジェクト
-let newTitle = ref("")
-let newContent = ref("")
-
-// 投稿ボタンを押された時にarticlesにデータを追加する処理
-function onPost(newTitle,newContent){
-  let newArticle = {
-    id: articles.length,
-    title: newTitle,
-    content: newContent,
-    nice: 0
-  }
-  return articles.push(newArticle)
-}
-
-// postコンポーネントから受け取ったデータをarticlesに追加する処理
-// function addArticle(title, content){
-//   console.log(title)
-//   let addArticle = {
-//     id: articles.length,
-//     title: title,
-//     content: content,
-//     nice: 0
-//   }
-//   articles.push(addArticle)
-// }
 
 </script>
 
@@ -68,11 +66,12 @@ function onPost(newTitle,newContent){
   <body class="body">
     <main class="main">
       <h1 class="title">エンジニアBlog</h1>
+
       <div class="search">
         Search <input type="text" v-model="searchQuery">
       </div>
 
-      <div class="article">
+      <!-- <div class="article">
         <h3>投稿フォーム</h3>
         <form>
             <label>
@@ -89,9 +88,9 @@ function onPost(newTitle,newContent){
                 v-model="newContent"
             ></textarea>
             </label><br>
-            <button @click="onPost(newTitle,newContent)">投稿</button>
-        </form>
-    </div>
+            <button @click="onPost">投稿</button>
+          </form>
+      </div> -->
 
       <!-- <Post
       v-model:title = "title"
@@ -99,11 +98,11 @@ function onPost(newTitle,newContent){
       @on-post="addArticle"
       /> -->
 
-
       <Article 
       :articles = "articles"
       :searchQuery = "searchQuery"
       ></Article>
+
     </main>
   </body>
   
