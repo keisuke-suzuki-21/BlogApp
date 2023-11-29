@@ -3,7 +3,9 @@ import { computed } from 'vue';
 
 const props = defineProps({
     articles: Array,
-    searchQuery: String
+    searchQuery: String,
+    title: String,
+    content: String
 })
 
 // リアルタイム検索機能のロジック
@@ -21,6 +23,19 @@ const filerDate = computed(() => {
     return filerDate
 })
 
+// 投稿機能のロジック
+const newArticle = computed(()  => {
+    let newTitle = props.title
+    let newContent = props.content
+    let newDate = {
+        id: props.articles.length,
+        title: newTitle,
+        content: newContent,
+        nice: 0
+    }
+    return newDate
+})
+
 
 </script>
 
@@ -29,6 +44,11 @@ const filerDate = computed(() => {
         <h2>{{ article.title }}</h2>
         <p>{{ article.content }}</p>
         <button @click="article.nice++">👍 {{ article.nice }}</button>
+    </div>
+    <div class="article">
+        <h2>{{ newArticle.title }}</h2>
+        <p>{{ newArticle.content }}</p>
+        <button @click="newArticle.nice++">👍 {{ newArticle.nice }}</button>
     </div>
   
 </template>

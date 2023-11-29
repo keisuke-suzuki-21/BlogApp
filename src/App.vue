@@ -77,6 +77,7 @@ const content = ref("")
 
       <div class="article">
         <h3>投稿フォーム</h3>
+          <form>
             <label>
                 title<br>
                 <input 
@@ -91,16 +92,21 @@ const content = ref("")
                 v-model="content"
             ></textarea>
             </label><br>
+            <button @submit="onPost">投稿</button>
+          </form>
       </div>
 
-      <Post>
+      <!-- <Post>
         <template v-slot:title>{{ title }}</template>
         <template v-slot:content>{{ content }}</template>
-      </Post>
+      </Post> -->
 
+      <!-- 動的なpropsだからv-bindを使って送る -->
       <Article 
       :articles = "articles"
       :searchQuery = "searchQuery"
+      :title = "title"
+      :content = "content"
       ></Article>
 
     </main>
