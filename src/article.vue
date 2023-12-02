@@ -21,11 +21,6 @@ const filerDate = computed(() => {
     return filerDate
 })
 
-// 記事削除機能のロジック
-function articleDelete(index){
-    props.articles.splice(index,1)
-}
-
 
 // 投稿機能のロジック
 let title = ref("")
@@ -66,19 +61,13 @@ function addArticle(newTitle, newContent){
     </div>
 
     <div class="article" v-for="(article, index) in filerDate" :key="article.id">
-        <div v-if="article.flg===false">
-            <h2>{{ article.title }}</h2>
-            <p>{{ article.content }}</p>
-            <button @click="article.nice++">👍 {{ article.nice }}</button>
-            <button class="edit" @click="article.flg = !article.flg">編集</button>
-            <button @click="articleDelete(index)">削除</button>
-        </div>
-        <div v-else>
-            <input v-model="article.title">
-            <textarea v-model="article.content"></textarea>
-            <button @click="article.flg = !article.flg">編集完了</button>
-        </div>
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.content }}</p>
+        <button @click="article.nice++">👍 {{ article.nice }}</button><br>
+        <RouterLink :to="`/articles/${article.id}`">詳細へ</RouterLink>
     </div>
+        
+    
   
 </template>
 

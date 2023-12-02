@@ -4,7 +4,7 @@
 
 
 <template>
-    <div>HomeViewページ</div>
+    
 </template>
 
 <style>

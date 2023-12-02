@@ -1,6 +1,8 @@
 <script setup>
 import { computed, ref } from 'vue'
+import { useRoute } from 'vue-router';
 import Article from "./article.vue"
+import ArticleView from './views/ArticleView.vue';
 
 // ブログ記事のシードデータ
 const articles = ref([
@@ -69,21 +71,11 @@ const articles = ref([
 // 検索に使うクエリー
 const searchQuery = ref("")
 
+// 表示コンポーネントのコントロールに使うルートパラメータ
+const route = useRoute()
 
-// // ルーティングの設定
-//   // ①コンポーネントの設定　
-//   const Home = { template: '<div>Home</div>' }
-//   const About = { template: '<div>About</div>' }
-//     // パスとコンポーネントとの紐付け
-//   const routes = [
-//     { path: '/', component: Home },
-//     { path: '/about', component: About },
-//   ]
-//     // vueRouterインスタンスの作成
-//   const router = VueRouter.createRouter({
-//     history: VueRouter.createWebHashHistory(),
-//     routes, 
-//   })
+
+
 
 </script>
 
@@ -93,20 +85,24 @@ const searchQuery = ref("")
       <h1 class="title">エンジニアBlog</h1>
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/">記事一覧</RouterLink>
       </nav>
 
-      <router-view/>
+      <!-- マッチしたルーティングのコンポーネントを表示する場所 -->
+      <router-view
+      :articles = "articles"
+      />
 
+      <!-- 検索フォーム・投稿フォーム・記事一覧 -->
+      <div v-if="route.params.id === undefined">
       <div class="search">
         Search <input type="text" v-model="searchQuery">
       </div>
-
       <Article 
       :articles = "articles"
       :searchQuery = "searchQuery"
       ></Article>
+    </div>
 
     </main>
   </body>
