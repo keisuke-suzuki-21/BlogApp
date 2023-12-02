@@ -1,12 +1,5 @@
 <script setup>
 
-// const props = defineProps({
-//     title: String,
-//     content: String
-// })
-
-// defineEmits(['update:title', 'update:content'])
-
 
 </script>
 

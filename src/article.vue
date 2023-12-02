@@ -23,6 +23,12 @@ const filerDate = computed(() => {
     return filerDate
 })
 
+// 記事削除機能のロジック
+function articleDelete(index){
+    props.articles.splice(index,1)
+}
+
+
 // 投稿機能のロジック
 const newArticle = computed(()  => {
     let newTitle = props.title
@@ -36,15 +42,25 @@ const newArticle = computed(()  => {
     return newDate
 })
 
-
 </script>
 
 <template>
-    <div class="article" v-for="article in filerDate" :key="article.id">
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.content }}</p>
-        <button @click="article.nice++">👍 {{ article.nice }}</button>
+
+    <div class="article" v-for="(article, index) in filerDate" :key="article.id">
+        <div v-if="article.flg===false">
+            <h2>{{ article.title }}</h2>
+            <p>{{ article.content }}</p>
+            <button @click="article.nice++">👍 {{ article.nice }}</button>
+            <button class="edit" @click="article.flg = !article.flg">編集</button>
+            <button @click="articleDelete(index)">削除</button>
+        </div>
+        <div v-else>
+            <input v-model="article.title">
+            <textarea v-model="article.content"></textarea>
+            <button @click="article.flg = !article.flg">編集完了</button>
+        </div>
     </div>
+
     <div class="article">
         <h2>{{ newArticle.title }}</h2>
         <p>{{ newArticle.content }}</p>
@@ -64,6 +80,15 @@ const newArticle = computed(()  => {
 
 .article h2 {
   color: #333;
+}
+
+.article textarea{
+    width: 700px;
+    height: 100px;
+}
+
+.edit{
+    margin-left: 580px;
 }
 
 </style>
