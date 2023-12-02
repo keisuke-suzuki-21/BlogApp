@@ -22,43 +22,9 @@ const filerDate = computed(() => {
 })
 
 
-// 投稿機能のロジック
-let title = ref("")
-let content = ref("")
-function addArticle(newTitle, newContent){
-    props.articles.push({
-        id: props.articles.length,
-        title: newTitle,
-        content: newContent,
-        nice: 0,
-        flg: false
-    })
-    title = ref("")
-    content = ref("")
-}
-
 </script>
 
 <template>
-
-    <div class="article">
-        <h3>投稿フォーム</h3>
-            <label>
-                title<br>
-                <input 
-                type="text"
-                v-model="title"
-                >
-            </label><br>
-            <label>
-                content<br>
-                <textarea
-                type="textarea"
-                v-model="content"
-            ></textarea>
-            </label><br>
-        <button @click="addArticle(title, content)">投稿</button>
-    </div>
 
     <div class="article" v-for="(article, index) in filerDate" :key="article.id">
         <h2>{{ article.title }}</h2>

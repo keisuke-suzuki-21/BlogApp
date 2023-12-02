@@ -1,8 +1,9 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router';
-import Article from "./article.vue"
+import Article from "./article.vue";
 import ArticleView from './views/ArticleView.vue';
+import PostView from './views/PostView.vue';
 
 // ブログ記事のシードデータ
 const articles = ref([
@@ -73,7 +74,7 @@ const searchQuery = ref("")
 
 // 表示コンポーネントのコントロールに使うルートパラメータ
 const route = useRoute()
-
+console.log(route.fullPath)
 
 
 
@@ -85,7 +86,8 @@ const route = useRoute()
       <h1 class="title">エンジニアBlog</h1>
 
       <nav>
-        <RouterLink to="/">記事一覧</RouterLink>
+        <RouterLink to="/">記事一覧</RouterLink> | 
+        <RouterLink to="/post">投稿ページ</RouterLink>
       </nav>
 
       <!-- マッチしたルーティングのコンポーネントを表示する場所 -->
@@ -94,7 +96,8 @@ const route = useRoute()
       />
 
       <!-- 検索フォーム・投稿フォーム・記事一覧 -->
-      <div v-if="route.params.id === undefined">
+      <!-- ルーティングがホーム（"/"）の時だけ表示 -->
+      <div v-if="route.fullPath === '/'">
       <div class="search">
         Search <input type="text" v-model="searchQuery">
       </div>
