@@ -1,11 +1,9 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref} from 'vue';
 
 const props = defineProps({
     articles: Array,
     searchQuery: String,
-    title: String,
-    content: String
 })
 
 // リアルタイム検索機能のロジック
@@ -30,21 +28,42 @@ function articleDelete(index){
 
 
 // 投稿機能のロジック
-const newArticle = computed(()  => {
-    let newTitle = props.title
-    let newContent = props.content
-    let newDate = {
+let title = ref("")
+let content = ref("")
+function addArticle(newTitle, newContent){
+    props.articles.push({
         id: props.articles.length,
         title: newTitle,
         content: newContent,
-        nice: 0
-    }
-    return newDate
-})
+        nice: 0,
+        flg: false
+    })
+    title = ref("")
+    content = ref("")
+}
 
 </script>
 
 <template>
+
+    <div class="article">
+        <h3>投稿フォーム</h3>
+            <label>
+                title<br>
+                <input 
+                type="text"
+                v-model="title"
+                >
+            </label><br>
+            <label>
+                content<br>
+                <textarea
+                type="textarea"
+                v-model="content"
+            ></textarea>
+            </label><br>
+        <button @click="addArticle(title, content)">投稿</button>
+    </div>
 
     <div class="article" v-for="(article, index) in filerDate" :key="article.id">
         <div v-if="article.flg===false">
@@ -59,12 +78,6 @@ const newArticle = computed(()  => {
             <textarea v-model="article.content"></textarea>
             <button @click="article.flg = !article.flg">編集完了</button>
         </div>
-    </div>
-
-    <div class="article">
-        <h2>{{ newArticle.title }}</h2>
-        <p>{{ newArticle.content }}</p>
-        <button @click="newArticle.nice++">👍 {{ newArticle.nice }}</button>
     </div>
   
 </template>

@@ -66,43 +66,8 @@ const articles = ref([
   }
 ])
 
-
 // 検索に使うクエリー
 const searchQuery = ref("")
-
-// 投稿機能の準備
-const title = ref("")
-const content = ref("")
-
-
-
-// const title1 = ref("")
-// const content1 = ref("")
-
-// 投稿した時にデータを追加するロジック
-// function onPost(){
-//   let newArticle = {
-//     id: 11,
-//     title: title.value,
-//     content: content.value,
-//     nice: 0
-//   }
-//   articles.push(newArticle)
-//   console.log(articles)
-//   return articles
-// }
-
-
-// const newArticles = [{id: 9,
-//   title: "AIのビジネス応用事例",
-//   content: "人工知能（AI）をビジネスに活用する実際の事例や成功パターンを紹介します。機械学習や自然言語処理などの技術を活かしたビジネスへの応用に焦点を当てます。",
-//   nice: 0
-//   }]
-// function add(event){
-//   console.log("addの中")
-//   console.log(newArticles)
-//   newArticles.push({id:11, title:title1.value, content:content1.value, nice:0})
-// }
 
 </script>
 
@@ -115,37 +80,9 @@ const content = ref("")
         Search <input type="text" v-model="searchQuery">
       </div>
 
-      <div class="article">
-        <h3>投稿フォーム</h3>
-            <label>
-                title<br>
-                <input 
-                type="text"
-                v-model="title"
-                >
-            </label><br>
-            <label>
-                content<br>
-                <textarea
-                type="textarea"
-                v-model="content"
-            ></textarea>
-            </label><br>
-            <button @click="add">投稿</button>
-      </div>
-
-    <!-- <div class="article" v-for="article in newArticles" :key="article.id">
-      <h2>{{ article.title }}</h2>
-      <p>{{ article.content }}</p>
-      <button @click="article.nice++">👍 {{ article.nice }}</button>
-    </div> -->
-
-      <!-- 動的なpropsだからv-bindを使って送る -->
       <Article 
       :articles = "articles"
       :searchQuery = "searchQuery"
-      :title = "title"
-      :content = "content"
       ></Article>
 
     </main>
