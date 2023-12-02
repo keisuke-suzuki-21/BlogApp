@@ -69,12 +69,35 @@ const articles = ref([
 // 検索に使うクエリー
 const searchQuery = ref("")
 
+
+// // ルーティングの設定
+//   // ①コンポーネントの設定　
+//   const Home = { template: '<div>Home</div>' }
+//   const About = { template: '<div>About</div>' }
+//     // パスとコンポーネントとの紐付け
+//   const routes = [
+//     { path: '/', component: Home },
+//     { path: '/about', component: About },
+//   ]
+//     // vueRouterインスタンスの作成
+//   const router = VueRouter.createRouter({
+//     history: VueRouter.createWebHashHistory(),
+//     routes, 
+//   })
+
 </script>
 
 <template>
   <body class="body">
     <main class="main">
       <h1 class="title">エンジニアBlog</h1>
+
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+      </nav>
+
+      <router-view/>
 
       <div class="search">
         Search <input type="text" v-model="searchQuery">
