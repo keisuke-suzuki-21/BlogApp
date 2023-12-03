@@ -27,10 +27,12 @@ function articleDelete(index){
     <h3>Article詳細</h3>
     <div class="articleDetail">
         <div v-if="filterArticle.flg===false">
+            <h2>id : {{ filterArticle.id }}</h2>
             <h2>{{ filterArticle.title }}</h2>
             <p>{{ filterArticle.content }}</p>
             <button class="edit" @click="filterArticle.flg = !filterArticle.flg">編集</button>
-            <button><RouterLink @click.native="articleDelete(route.params.id)" to="/">削除</RouterLink></button>
+            <!-- <button><RouterLink @click.native="articleDelete(route.params.id)" to="/">削除</RouterLink></button> -->
+            <button><RouterLink @click.native="articleDelete(filterArticle.id)" to="/">削除</RouterLink></button>
         </div>
         <div v-else>
             <input v-model="filterArticle.title">

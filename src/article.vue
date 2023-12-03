@@ -30,7 +30,7 @@ const filerDate = computed(() => {
         <h2>{{ article.title }}</h2>
         <p>{{ article.content }}</p>
         <button @click="article.nice++">👍 {{ article.nice }}</button><br>
-        <RouterLink :to="`/articles/${article.id}`">詳細へ</RouterLink>
+        <RouterLink :to="`/articles/${index}`">詳細へ</RouterLink>
     </div>
         
     
