@@ -28,7 +28,7 @@ const filerDate = computed(() => {
 
     <div class="article" v-for="(article, index) in filerDate" :key="article.id">
         <h2>{{ article.title }}</h2>
-        <p>{{ article.content }}</p>
+        <p>{{ article.overview }}</p>
         <button @click="article.nice++">👍 {{ article.nice }}</button><br>
         <RouterLink :to="`/articles/${index}`">詳細へ</RouterLink>
     </div>
