@@ -27,7 +27,7 @@ function articleDelete(index){
     <h3>Article詳細</h3>
     <div class="articleDetail">
         <div v-if="filterArticle.flg===false">
-            <h2>id : {{ filterArticle.id }}</h2>
+            <h2>No. {{ filterArticle.id }}</h2>
             <h2>{{ filterArticle.title }}</h2>
             <p>{{ filterArticle.overview }}</p>
             <p>{{ filterArticle.content }}</p>
@@ -37,15 +37,17 @@ function articleDelete(index){
         </div>
         <div v-else>
             <input v-model="filterArticle.title">
+            <textarea v-model="filterArticle.overview"></textarea>
             <textarea v-model="filterArticle.content"></textarea>
             <button @click="filterArticle.flg = !filterArticle.flg">編集完了</button>
         </div>
-    </div>
+</div>
 </template>
 
 <style>
+
 .articleDetail{
-    background-color: #fff;
+  background-color: #fff;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -65,4 +67,5 @@ function articleDelete(index){
 .edit{
     margin-left: 580px;
 }
+
 </style>

@@ -8,8 +8,9 @@ const props = defineProps({
 
 // 投稿機能のロジック
 let title = ref("")
+let overview = ref("")
 let content = ref("")
-function addArticle(newTitle, newContent){
+function addArticle(newTitle, newOverView, newContent){
     props.articles.push({
         id: props.articles.length,
         title: newTitle,
@@ -36,13 +37,20 @@ function addArticle(newTitle, newContent){
                 >
             </label><br>
             <label>
+                overview<br>
+                <textarea
+                type="textarea"
+                v-model="overview"
+            ></textarea>
+            </label><br>
+            <label>
                 content<br>
                 <textarea
                 type="textarea"
                 v-model="content"
             ></textarea>
             </label><br>
-        <button><RouterLink @click="addArticle(title, content)" to="/">投稿</RouterLink></button>
+        <button><RouterLink @click="addArticle(title, overview, content)" to="/">投稿</RouterLink></button>
     </div>
 
 </template>

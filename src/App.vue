@@ -37,7 +37,7 @@ const articles = ref([
   },
   {
     id: 2,
-    title: "エンジニアの挑戦：エンジニアリングマネージャーへのステップアップガイド",
+    title: "エンジニアリングマネージャーへのステップアップガイド",
     overview: "エンジニアからマネージャーへの道は多くの挑戦が待ち受けています。この記事では、エンジニアリングマネージャーになるためのステップアップガイドを提供します。",
     content: `
     エンジニアリングマネージャーになるためには、技術的なスキルだけでなくリーダーシップやコミュニケーション能力も必要です。この記事では、エンジニアリングマネージャーになるためのステップ、期待される役割、育成すべきスキルについて深く掘り下げます。
@@ -119,20 +119,22 @@ console.log(route.fullPath)
 </script>
 
 <template>
-  <body class="body">
-    <main class="main">
-      <h1 class="title">エンジニアBlog</h1>
 
-      <nav>
+  <header>
+    <h1>エンジニアBlog</h1>
+    <nav>
         <RouterLink to="/">記事一覧</RouterLink> | 
         <RouterLink to="/post">投稿ページ</RouterLink>
-      </nav>
+    </nav>
+  </header>
 
+  <main >
+
+    <div class="main-left">
       <!-- マッチしたルーティングのコンポーネントを表示する場所 -->
       <router-view
       :articles = "articles"
       />
-
       <!-- 検索フォーム・投稿フォーム・記事一覧 -->
       <!-- ルーティングがホーム（"/"）の時だけ表示 -->
       <div v-if="route.fullPath === '/'">
@@ -143,32 +145,93 @@ console.log(route.fullPath)
       :articles = "articles"
       :searchQuery = "searchQuery"
       ></Article>
+      </div>
     </div>
 
-    </main>
-  </body>
-  
+    <div class="main-right">
+      <div>
+        <p>お知らせ情報</p>
+      </div>
+    </div>
+
+    <footer>
+
+    </footer>
+  </main>
+
 </template>
 
 <style>
-.body {
+
+/* 　　　ページ構成デザイン　　　 */
+header {
+  position: fixed;
+  margin-top: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* width: 100%; */
+  width: 1200px;
+  /* background-color: #fff; */
+  background-color: #f7f7f7;
+}
+
+main{
+  padding-top: 150px;
+  padding-bottom: 150px;
+  width: 1200px;
+  background-color: #fff;
+  display:flex
+}
+
+.main-left{
+  width: 75%;
+  margin-right: 5%;
+  background-color: #f7f7f7;
+  padding: 5%;
+}
+
+.main-right{
+  width: 20%;
+  background-color: #f7f7f7;
+  padding: 5%;
+}
+
+footer{
+  position: fixed;
+  bottom: 0;
+}
+
+/* 　　　ページ構成デザイン　　　 */
+
+/*      ヘッダーデザイン　　　　 */
+
+
+
+/* .body {
   font-family: Arial, sans-serif;
   margin:  0 auto;
   padding: 0;
   line-height: 1.6;
   background-color: #f7f7f7;
   width: 1200px;
-}
+} */
 
-.main {
+/* .main {
   max-width: 800px;
   margin: 40px auto;
   padding: 0 20px;
-}
+} */
 
-.title{
-  margin: 20px auto;
-}
+/* .title{
+  background: #68c88a;
+  font-weight: bold;
+  color: white;
+  font-size: 35px;
+  width: 280px;
+  margin-right: 500px;
+  margin-bottom: 50px;
+  padding-left: 15px;
+} */
 
 .search{
   margin-bottom: 20px;
