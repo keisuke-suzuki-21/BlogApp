@@ -26,11 +26,14 @@ const filerDate = computed(() => {
 
 <template>
 
+    <!-- <h2 class="page-title">記事一覧</h2> -->
     <div class="article" v-for="(article, index) in filerDate" :key="article.id">
         <h2>{{ article.title }}</h2>
         <p>{{ article.overview }}</p>
-        <button @click="article.nice++">👍 {{ article.nice }}</button><br>
-        <RouterLink :to="`/articles/${index}`">詳細へ</RouterLink>
+        <div class="check">
+            <button @click="article.nice++">👍 {{ article.nice }}</button><br>
+            <RouterLink class="router-link" :to="`/articles/${index}`">詳細→</RouterLink>
+        </div>
     </div>
         
     
@@ -38,6 +41,7 @@ const filerDate = computed(() => {
 </template>
 
 <style>
+
 .article {
   background-color: #fff;
   padding: 20px;
@@ -46,17 +50,32 @@ const filerDate = computed(() => {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.article p{
+    padding-top: 2%;
+}
+
 .article h2 {
   color: #333;
+  border-left: solid 3px rgb(0, 189, 126);/*左線*/
+  margin-bottom: 5px;
 }
 
-.article textarea{
-    width: 700px;
-    height: 100px;
+.check{
+    display:flex;
+    padding-top: 2%;
 }
 
-.edit{
-    margin-left: 580px;
+.check button {
+    padding: 0;
+    font-family: inherit;
+    appearance: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.router-link{
+    padding-left: 90%;
 }
 
 </style>
