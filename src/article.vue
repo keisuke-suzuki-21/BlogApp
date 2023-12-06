@@ -75,7 +75,7 @@ const filerDate = computed(() => {
 }
 
 .router-link{
-    padding-left: 90%;
+    padding-left: 85%;
 }
 
 </style>

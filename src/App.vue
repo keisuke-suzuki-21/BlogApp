@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router';
 import Article from "./article.vue";
 import ArticleView from './views/ArticleView.vue';
 import PostView from './views/PostView.vue';
+import SiteInformation from "./siteInformation.vue";
 
 // ブログ記事のシードデータ
 const articles = ref([
@@ -70,7 +71,6 @@ const searchQuery = ref("")
 
 // 表示コンポーネントのコントロールに使うルートパラメータ
 const route = useRoute()
-console.log(route.fullPath)
 
 
 
@@ -108,7 +108,12 @@ console.log(route.fullPath)
 
     <div class="main-right">
       <div>
-        <p>お知らせ情報</p>
+        <h3>サイト情報</h3>
+        <SiteInformation>
+          <img src="./assets/programing.png">
+          <p class="site-information">ソフトウェアエンジニアの知識やスキルは流動的な面があります。どんどん新しい言語やフレームワークが出てきて、5年前の最新は現代ではレガシーなスキルと言われることも珍しくありません。</p>
+          <p>そこで、当サイトではエンジニアブログなるものを作り、常に勉強が必要なソフトウェアエンジニアの手助けになればと考えて作られました。</p>
+        </SiteInformation>
       </div>
     </div>
 
@@ -127,9 +132,7 @@ header {
   margin-top: 0px;
   padding-top: 5px;
   padding-bottom: 5px;
-  /* width: 100%; */
   width: 1200px;
-  /* background-color: #fff; */
   background-color: #f7f7f7;
 }
 
@@ -142,14 +145,14 @@ main{
 }
 
 .main-left{
-  width: 75%;
+  width: 70%;
   margin-right: 5%;
   background-color: #f7f7f7;
   padding: 5%;
 }
 
 .main-right{
-  width: 20%;
+  width: 25%;
   background-color: #f7f7f7;
   padding: 5%;
 }
@@ -170,5 +173,20 @@ footer{
   padding: 10px;
 }
 /*      タイトル検索　　　　 */
+
+
+/*      サイト情報　　　　　 */
+.main-right h3{
+  background-color: rgb(67, 67, 67);
+  color: #f7f7f7;
+  font-weight: bold;
+  text-align: center;
+}
+.main-right img{
+  width: 100%;
+  height: 100%;
+}
+
+/* 　　　サイト情報　　　　　 */
 
 </style>
