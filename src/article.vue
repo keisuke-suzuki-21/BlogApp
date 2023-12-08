@@ -7,6 +7,8 @@ const props = defineProps({
 })
 
 // リアルタイム検索機能のロジック
+// Propsで受け取ったarticlesを直接使わないのは、Propsの受け渡しでは一方向バインディングが形成されるから
+// つまり、親であった変更は子に流れるが、子にあった変更は親に流れないため。
 const filerDate = computed(() => {
     let articleData = props.articles
     let searchKey = props.searchQuery
@@ -35,9 +37,7 @@ const filerDate = computed(() => {
             <RouterLink class="router-link" :to="`/articles/${index}`">詳細→</RouterLink>
         </div>
     </div>
-        
     
-  
 </template>
 
 <style>

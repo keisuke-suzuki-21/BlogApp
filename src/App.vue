@@ -72,6 +72,11 @@ const searchQuery = ref("")
 // 表示コンポーネントのコントロールに使うルートパラメータ
 const route = useRoute()
 
+// 詳細画面の削除機能のロジック
+function onArticleDelete(index){
+  console.log(index)
+  articles.splice(index,1)
+}
 
 
 </script>
@@ -79,9 +84,10 @@ const route = useRoute()
 <template>
 
   <header>
+    <!-- <img class="logo" src="./assets/logo.png"> -->
     <h1>エンジニアBlog</h1>
     <nav>
-        <RouterLink to="/">記事一覧</RouterLink> | 
+        <RouterLink to="/">トップページ</RouterLink> | 
         <RouterLink to="/post">投稿ページ</RouterLink>
     </nav>
   </header>
@@ -93,6 +99,7 @@ const route = useRoute()
       <router-view
       :articles = "articles"
       />
+      <!-- v-on:article-delete="onArticleDelete" -->
       <!-- 検索フォーム・投稿フォーム・記事一覧 -->
       <!-- ルーティングがホーム（"/"）の時だけ表示 -->
       <div v-if="route.fullPath === '/'">
@@ -110,9 +117,11 @@ const route = useRoute()
       <div>
         <h3>サイト情報</h3>
         <SiteInformation>
-          <img src="./assets/programing.png">
-          <p class="site-information">ソフトウェアエンジニアの知識やスキルは流動的な面があります。どんどん新しい言語やフレームワークが出てきて、5年前の最新は現代ではレガシーなスキルと言われることも珍しくありません。</p>
-          <p>そこで、当サイトではエンジニアブログなるものを作り、常に勉強が必要なソフトウェアエンジニアの手助けになればと考えて作られました。</p>
+          <template v-slot:siteInformation>
+            <img src="./assets/programing.png">
+            <p class="site-information">ソフトウェアエンジニアの知識やスキルは流動的な面があります。どんどん新しい言語やフレームワークが出てきて、5年前の最新は現代ではレガシーなスキルと言われることも珍しくありません。</p>
+            <p>そこで、当サイトではエンジニアブログなるものを作り、常に勉強が必要なソフトウェアエンジニアの手助けになればと考えて作られました。</p>
+          </template>
         </SiteInformation>
       </div>
     </div>
@@ -164,6 +173,10 @@ footer{
 /* 　　　ページ構成デザイン　　　 */
 
 /*      ヘッダーデザイン　　　　 */
+.logo img{
+  width: 30px;
+  height: 30px;
+}
 /*      ヘッダーデザイン　　　　 */
 
 /*      タイトル検索　　　　 */

@@ -16,8 +16,8 @@ const filterArticle = computed(() => {
 })
 
 // 記事削除機能のロジック
-function articleDelete(index){
-    props.articles.splice(index,1)
+function articleDelete(id){
+    props.articles.splice(id,1)
 }
 
 </script>
@@ -32,7 +32,7 @@ function articleDelete(index){
             <p>{{ filterArticle.overview }}</p>
             <p>{{ filterArticle.content }}</p>
             <button class="edit" @click="filterArticle.flg = !filterArticle.flg">編集</button>
-            <!-- <button><RouterLink @click.native="articleDelete(route.params.id)" to="/">削除</RouterLink></button> -->
+            <!-- <button><RouterLink @click.native="$emit('article-delete', filterArticle.id)" to="/">削除</RouterLink></button> -->
             <button><RouterLink @click.native="articleDelete(filterArticle.id)" to="/">削除</RouterLink></button>
         </div>
         <div v-else>

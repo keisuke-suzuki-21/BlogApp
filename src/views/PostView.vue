@@ -14,6 +14,7 @@ function addArticle(newTitle, newOverView, newContent){
     props.articles.push({
         id: props.articles.length,
         title: newTitle,
+        overview: newOverView,
         content: newContent,
         nice: 0,
         flg: false
