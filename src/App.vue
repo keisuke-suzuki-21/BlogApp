@@ -5,6 +5,7 @@ import Article from "./article.vue";
 import ArticleView from './views/ArticleView.vue';
 import PostView from './views/PostView.vue';
 import SiteInformation from "./siteInformation.vue";
+import { provide } from 'vue'
 
 // ブログ記事のシードデータ
 const articles = ref([
@@ -72,11 +73,15 @@ const searchQuery = ref("")
 // 表示コンポーネントのコントロールに使うルートパラメータ
 const route = useRoute()
 
-// 詳細画面の削除機能のロジック
-function onArticleDelete(index){
-  console.log(index)
-  articles.splice(index,1)
+// 記事詳細(ArticleView)へ送る記事削除機能のロジック
+function articleDelete(id){
+  articles.value.splice(id,1)
 }
+// 記事詳細(ArticleView)へのデータ送信
+provide('articles',{
+  articles,
+  articleDelete
+});
 
 
 </script>
@@ -96,15 +101,13 @@ function onArticleDelete(index){
 
     <div class="main-left">
       <!-- マッチしたルーティングのコンポーネントを表示する場所 -->
-      <router-view
-      :articles = "articles"
-      />
-      <!-- v-on:article-delete="onArticleDelete" -->
+      <router-view/>
+
       <!-- 検索フォーム・投稿フォーム・記事一覧 -->
       <!-- ルーティングがホーム（"/"）の時だけ表示 -->
       <div v-if="route.fullPath === '/'">
         <div class="search">
-          タイトル検索　<input type="text" v-model="searchQuery">
+          タイトル検索 <input type="text" v-model="searchQuery">
         </div>
         <Article 
           :articles = "articles"
