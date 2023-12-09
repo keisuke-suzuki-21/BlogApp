@@ -12,8 +12,9 @@ const {articles, articleDelete} = inject('articles')
 const filterArticle = computed(() => {
     // インジェクトから受け取った
     let articleData = articles.value
-    let articleId = route.params.id
-    return articleData[articleId]
+    let id = route.params.id
+    console.log(route.params)
+    return articleData[id]
 })
 
 

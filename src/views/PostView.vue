@@ -1,10 +1,13 @@
 <script setup>
 import { computed, ref} from 'vue';
+import { inject } from 'vue'
 
-const props = defineProps({
-    articles: Array,
+// const props = defineProps({
+//     articles: Array,
     
-})
+// })
+// 記事一覧(App.vue)からのデータ受信
+const {articles, articleDelete} = inject('articles')
 
 // 投稿機能のロジック
 let title = ref("")

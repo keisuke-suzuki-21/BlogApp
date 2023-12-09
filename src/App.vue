@@ -89,12 +89,17 @@ provide('articles',{
 <template>
 
   <header>
-    <!-- <img class="logo" src="./assets/logo.png"> -->
-    <h1>エンジニアBlog</h1>
-    <nav>
+    <div class="header-left">
+      <img class="logo" src="./assets/logo.png">
+    </div>
+    <div class="header-right">
+      <h1>エンジニアBlog</h1>
+      <nav>
         <RouterLink to="/">トップページ</RouterLink> | 
         <RouterLink to="/post">投稿ページ</RouterLink>
-    </nav>
+      </nav>
+    </div>
+    
   </header>
 
   <main >
@@ -146,6 +151,17 @@ header {
   padding-bottom: 5px;
   width: 1200px;
   background-color: #f7f7f7;
+  display:flex
+}
+
+.header-left{
+  width: 10%;
+  margin-right: 3%;
+}
+
+.header-right{
+  width: 87%;
+  margin-top: 3%;
 }
 
 main{
@@ -176,9 +192,9 @@ footer{
 /* 　　　ページ構成デザイン　　　 */
 
 /*      ヘッダーデザイン　　　　 */
-.logo img{
-  width: 30px;
-  height: 30px;
+header img{
+  width: 100%;
+  height: 100%;
 }
 /*      ヘッダーデザイン　　　　 */
 

@@ -34,7 +34,10 @@ const filerDate = computed(() => {
         <p>{{ article.overview }}</p>
         <div class="check">
             <button @click="article.nice++">👍 {{ article.nice }}</button><br>
-            <RouterLink class="router-link" :to="`/articles/${index}`">詳細→</RouterLink>
+            <!-- aタグ使うと毎回サーバーへリクエストするからずれないけど、削除したものが勝手に戻ってる -->
+            <!-- <a :href="`/articles/${article.id}`">詳細→</a> -->
+            <!-- RouterLink使うとSPAの動きをするから削除動作後ズレが生じる -->
+            <RouterLink class="router-link" :to="`/articles/${article.id}`">詳細→</RouterLink>
         </div>
     </div>
     
