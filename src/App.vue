@@ -83,6 +83,28 @@ provide('articles',{
   articleDelete
 });
 
+// 投稿ページ(PostView)へ送る投稿機能のロジック
+function addArticle(newTitle, newOverView, newContent){
+  articles.value.push({
+        id: articles.length,
+        title: newTitle,
+        overview: newOverView,
+        content: newContent,
+        nice: 0,
+        flg: false
+    })
+}
+let newArticle = ref({
+  title: "",
+  overview: "",
+  content: ""
+})
+// 投稿ページへのデータ送信
+provide("addArticle", {
+  newArticle,
+  addArticle
+});
+
 
 </script>
 

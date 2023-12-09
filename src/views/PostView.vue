@@ -7,24 +7,9 @@ import { inject } from 'vue'
     
 // })
 // 記事一覧(App.vue)からのデータ受信
-const {articles, articleDelete} = inject('articles')
+const {newArticle, addArticle} = inject('addArticle')
+console.log(newArticle.value.content)
 
-// 投稿機能のロジック
-let title = ref("")
-let overview = ref("")
-let content = ref("")
-function addArticle(newTitle, newOverView, newContent){
-    props.articles.push({
-        id: props.articles.length,
-        title: newTitle,
-        overview: newOverView,
-        content: newContent,
-        nice: 0,
-        flg: false
-    })
-    title = ref("")
-    content = ref("")
-}
 
 </script>
 
@@ -37,24 +22,24 @@ function addArticle(newTitle, newOverView, newContent){
                 title<br>
                 <input 
                 type="text"
-                v-model="title"
+                v-model="newArticle.title"
                 >
             </label><br>
             <label>
                 overview<br>
                 <textarea
                 type="textarea"
-                v-model="overview"
+                v-model="newArticle.overview"
             ></textarea>
             </label><br>
             <label>
                 content<br>
                 <textarea
                 type="textarea"
-                v-model="content"
+                v-model="newArticle.content"
             ></textarea>
             </label><br>
-        <button><RouterLink @click="addArticle(title, overview, content)" to="/">投稿</RouterLink></button>
+        <button><RouterLink @click="addArticle(newArticle.title, newArticle.overview, newArticle.content)" to="/">投稿</RouterLink></button>
     </div>
 
 </template>
