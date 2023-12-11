@@ -3,7 +3,7 @@ import { computed, ref} from 'vue';
 
 const props = defineProps({
     articles: Array,
-    searchQuery: String,
+    searchQuery: String
 })
 
 // リアルタイム検索機能のロジック
@@ -12,7 +12,7 @@ const props = defineProps({
 const filerDate = computed(() => {
     let articleData = props.articles
     let searchKey = props.searchQuery
-    let filerDate =[]
+    let filerDate = []
 
     for(let i in articleData){
         let article = articleData[i]

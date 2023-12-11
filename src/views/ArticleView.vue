@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { inject } from 'vue'
 
+// ルーティングの取得
 const route = useRoute();
 
 // 記事一覧(App.vue)からのデータ受信

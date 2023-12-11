@@ -15,9 +15,8 @@ console.log(newArticle.value.content)
 
 
 <template>
-    <h3>投稿ページ</h3>
+    <h3 class="post-title">投稿ページ</h3>
     <div class="article">
-        <h3>投稿フォーム</h3>
             <label>
                 title<br>
                 <input 
@@ -60,6 +59,12 @@ console.log(newArticle.value.content)
 .article textarea{
     width: 700px;
     height: 100px;
+}
+
+.post-title{
+    margin-bottom: 50px;
+  border-bottom: solid 3px black;
+  padding: 10px;
 }
 
 

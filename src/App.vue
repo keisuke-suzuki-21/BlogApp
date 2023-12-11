@@ -133,6 +133,9 @@ provide("addArticle", {
       <!-- 検索フォーム・投稿フォーム・記事一覧 -->
       <!-- ルーティングがホーム（"/"）の時だけ表示 -->
       <div v-if="route.fullPath === '/'">
+        <div class="top-title">
+          <h3>トップページ</h3>
+        </div>
         <div class="search">
           タイトル検索 <input type="text" v-model="searchQuery">
         </div>
@@ -187,7 +190,7 @@ header {
 }
 
 main{
-  padding-top: 150px;
+  padding-top: 180px;
   padding-bottom: 150px;
   width: 1200px;
   background-color: #fff;
@@ -220,13 +223,16 @@ header img{
 }
 /*      ヘッダーデザイン　　　　 */
 
-/*      タイトル検索　　　　 */
-.search{
+/*      トップタイトル　　　　 */
+.top-title{
   margin-bottom: 50px;
   border-bottom: solid 3px black;
   padding: 10px;
 }
-/*      タイトル検索　　　　 */
+.search{
+  padding: 20px;
+}
+/*      トップタイトル　　　 */
 
 
 /*      サイト情報　　　　　 */
