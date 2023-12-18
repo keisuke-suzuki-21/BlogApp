@@ -38,6 +38,7 @@ console.log(newArticle.value.content)
                 v-model="newArticle.content"
             ></textarea>
             </label><br>
+        <!-- インラインハンドラー下でのメソッド呼び出しによって、ネイティブイベントを無視してカスタム引数を渡している -->
         <button><RouterLink @click="addArticle(newArticle.title, newArticle.overview, newArticle.content)" to="/">投稿</RouterLink></button>
     </div>
 

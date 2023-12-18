@@ -14,7 +14,7 @@ const filterArticle = computed(() => {
     // インジェクトから受け取った
     let articleData = articles.value
     let id = route.params.id
-    console.log(route.params)
+    // console.log(route.params)
     return articleData[id]
 })
 
@@ -31,6 +31,7 @@ const filterArticle = computed(() => {
             <p>{{ filterArticle.overview }}</p>
             <p>{{ filterArticle.content }}</p>
             <button class="edit" @click="filterArticle.flg = !filterArticle.flg">編集</button>
+            <!-- インラインハンドラー下でのメソッド呼び出しによって、ネイティブイベントの代わりにカスタムの引数を渡している -->
             <button><RouterLink @click.native="articleDelete(filterArticle.id)" to="/">削除</RouterLink></button>
         </div>
         <div v-else>
