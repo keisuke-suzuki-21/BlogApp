@@ -1,32 +1,17 @@
 import { defineStore } from "pinia";
+import { computed, ref} from "vue";
 
-export const useArticleStore = defineStore("articleStore", {
-    state: () => {
-        return {
-            count: 0
-        }
-    },
-    getters: {
-        double: (state) => {
-            return state.count * 2
-        }
-    },
-    actions:{
-        increment() {
-            this.count++
-        }
-    },
-    persist: true
-})
-
-// export const useArticleStore = defineStore("articleStore", {
-//     const count = ref(0);
-//     const doubleCount = computed(() => count.value * 2);
-// 	const increment = () => {
-// 		console.log('increment');
-// 		count.value += 1;
-// 		console.log(count.value);
-// 	};
-//     persist: true
-//     return { count, doubleCount, increment };
-// })
+//defineStore() を使ってストアを定義し、名前を付けてエクスポート
+export const useArticleStore = defineStore('articleStore', () => {
+    const count = ref(0)
+    const double = computed(() => count.value * 2)
+    function increment() {
+      count.value++
+    }
+   
+    return { count, double, increment }
+  },
+  {
+    persist: true,
+  }
+  );
