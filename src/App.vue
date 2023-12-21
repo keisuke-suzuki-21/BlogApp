@@ -6,7 +6,7 @@ import ArticleView from './views/ArticleView.vue';
 import PostView from './views/PostView.vue';
 import SiteInformation from "./siteInformation.vue";
 import { provide } from 'vue';
-import { useArticleStore } from "./stores/articleStore.js";
+import { useArticleStore } from "./stores/articlesStore.js";
 
 // ブログ記事のシードデータ
 const articles = ref([
@@ -107,7 +107,7 @@ provide("addArticle", {
 });
 
 // piniaを使ったシードデータ
-const count = useArticleStore()
+const articleStore = useArticleStore()
 
 
 </script>
@@ -139,8 +139,9 @@ const count = useArticleStore()
       <div v-if="route.fullPath === '/'">
         <div class="top-title">
           <h3>トップページ</h3>
-          <p>{{ count.count }}</p>
-          <button @click="count.increment">+1</button>
+          <!-- piniaテスト -->
+          <p>{{ articleStore.count }}</p>
+          <button @click="articleStore.increment">+1</button>
         </div>
         <div class="search">
           タイトル検索 <input type="text" v-model="searchQuery">
@@ -256,3 +257,4 @@ header img{
 /* 　　　サイト情報　　　　　 */
 
 </style>
+./stores/articlesStore.js
