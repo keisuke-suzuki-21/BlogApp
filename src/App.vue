@@ -44,7 +44,6 @@ function addArticle(newTitle, newOverView, newContent){
         flg: false
     })
 }
-
 let newArticle = ref({
   title: "",
   overview: "",
@@ -91,6 +90,7 @@ provide("addArticle", {
         <div class="search">
           タイトル検索 <input type="text" v-model="searchQuery">
         </div>
+        <!-- articlesはストアのプロパティを示している -->
         <Article 
           :articles = "articles"
           :searchQuery = "searchQuery"

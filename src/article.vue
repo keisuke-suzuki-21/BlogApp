@@ -9,18 +9,18 @@ const props = defineProps({
 // リアルタイム検索機能のロジック
 // Propsで受け取ったarticlesを直接使わないのは、Propsの受け渡しでは一方向バインディングが形成されるから
 // つまり、親であった変更は子に流れるが、子にあった変更は親に流れないため。
-const filerDate = computed(() => {
+const filterDate = computed(() => {
     let articleData = props.articles
     let searchKey = props.searchQuery
-    let filerDate = []
+    let filterDate = []
 
     for(let i in articleData){
         let article = articleData[i]
         if(article.title.indexOf(searchKey) !== -1){
-            filerDate.push(article)
+            filterDate.push(article)
         }
     }
-    return filerDate
+    return filterDate
 })
 
 
@@ -29,7 +29,7 @@ const filerDate = computed(() => {
 <template>
 
     <!-- <h2 class="page-title">記事一覧</h2> -->
-    <div class="article" v-for="(article, index) in filerDate" :key="article.id">
+    <div class="article" v-for="(article, index) in filterDate" :key="article.id">
         <h2>{{ article.title }}</h2>
         <p>{{ article.overview }}</p>
         <div class="check">

@@ -5,16 +5,6 @@ import { inject } from 'vue'
 // 記事一覧(App.vue)からのデータ受信
 const {newArticle, addArticle} = inject('addArticle')
 
-// // piniaを使ったシードデータ
-// const articlesStore = useArticlesStore()
-// const addArticle = articlesStore.addArticle
-// let newArticle = ref({
-//   title: "",
-//   overview: "",
-//   content: ""
-// })
-
-
 </script>
 
 
