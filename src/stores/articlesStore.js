@@ -65,7 +65,13 @@ export const useArticlesStore = defineStore('articlesStore', () => {
    
     return { articles }
   },
+//   {
+//     persist:true,
+//   },
   {
-    persist: true,
+    persist: {
+        storage: sessionStorage, 
+        // ページ セッションが終了すると、sessionStorage のデータは消去されます。
+    },
   }
   );
