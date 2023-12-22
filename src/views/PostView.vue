@@ -2,13 +2,17 @@
 import { computed, ref} from 'vue';
 import { inject } from 'vue'
 
-// const props = defineProps({
-//     articles: Array,
-    
-// })
 // 記事一覧(App.vue)からのデータ受信
 const {newArticle, addArticle} = inject('addArticle')
-console.log(newArticle.value.content)
+
+// // piniaを使ったシードデータ
+// const articlesStore = useArticlesStore()
+// const addArticle = articlesStore.addArticle
+// let newArticle = ref({
+//   title: "",
+//   overview: "",
+//   content: ""
+// })
 
 
 </script>
