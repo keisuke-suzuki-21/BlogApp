@@ -1,15 +1,17 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router';
-import Article from "./article.vue";
-import ArticleView from './views/ArticleView.vue';
+import Article from "./articles.vue";
 import PostView from './views/PostView.vue';
+import EditView from "./views/EditView.vue";
+import ArticleView from './views/ShowArticleView.vue';
 import SiteInformation from "./siteInformation.vue";
 import { provide } from 'vue';
 import { useArticlesStore } from "./stores/articlesStore.js";
+import { useSiteInformationStore } from "./stores/siteInformationsStore.js";
 
 
-// piniaを使ったシードデータ
+// piniaを使った記事のシードデータ
 const articlesStore = useArticlesStore()
 const articles = articlesStore.articles
 
@@ -57,6 +59,21 @@ provide("addArticle", {
 
 
 
+// piniaを使ったサイト情報のシードデータ
+const siteInformationStore = useSiteInformationStore()
+const siteInformation = siteInformationStore.siteInformation
+
+
+// サイト情報変更ページ(EditView)へ送るProvide
+function editSiteInformation(text){
+  siteInformation.text = text
+}
+provide("SiteInformation", {
+  siteInformation,
+  editSiteInformation
+})
+
+
 </script>
 
 <template>
@@ -69,7 +86,8 @@ provide("addArticle", {
       <h1>エンジニアBlog</h1>
       <nav>
         <RouterLink to="/">トップページ</RouterLink> | 
-        <RouterLink to="/post">投稿ページ</RouterLink>
+        <RouterLink to="/post">投稿ページ</RouterLink> | 
+        <RouterLink to="/edit">サイト情報編集ページ</RouterLink>
       </nav>
     </div>
     
@@ -104,8 +122,7 @@ provide("addArticle", {
         <SiteInformation>
           <template v-slot:siteInformation>
             <img src="./assets/programing.png">
-            <p class="site-information">ソフトウェアエンジニアの知識やスキルは流動的な面があります。どんどん新しい言語やフレームワークが出てきて、5年前の最新は現代ではレガシーなスキルと言われることも珍しくありません。</p>
-            <p>そこで、当サイトではエンジニアブログなるものを作り、常に勉強が必要なソフトウェアエンジニアの手助けになればと考えて作られました。</p>
+            <p class="site-information">{{ siteInformation.text }}</p>
           </template>
         </SiteInformation>
       </div>
